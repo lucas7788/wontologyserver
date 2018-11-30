@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.ontio.dao.BetsInfoMapper">
+    <resultMap id="BaseResultMap" type="com.github.ontio.model.BetInfo">
+        <result column="bettor" jdbcType="VARCHAR" property="bettor" />
+        <result column="rollunder" jdbcType="INTEGER" property="rollUnder" />
+        <result column="bet" jdbcType="DECIMAL" property="bet" />
+        <result column="roll" jdbcType="INTEGER" property="roll" />
+        <result column="payout" jdbcType="DECIMAL" property="payout" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    bettor, rollunder,bet,roll,payout
+    </sql>
+
+    <select id="selectBetInfoByPage" resultType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_all_bets
+        order by id DESC
+        limit #{param1}, #{param2}
+    </select>
+
+    <select id="selectBetInfoByBettor" parameterType="java.lang.String" resultType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_all_bets
+        where bettor = #{bettor,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertBetInfo" parameterType="com.github.ontio.model.BetInfo">
+    insert into tbl_all_bets (bettor,rollUnder, bet, roll, payout)
+    values (#{bettor,jdbcType=VARCHAR}, #{rollUnder,jdbcType=INTEGER}, #{bet,jdbcType=DECIMAL}, #{roll,jdbcType=INTEGER},
+    #{payout,jdbcType=DECIMAL})
+    </insert>
+
+    <select id="selectHugeWinnsByPage" resultType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_huge_wins
+        order by payout DESC
+        limit #{param1}, #{param2}
+    </select>
+    <select id="selectHugeWinTotalNum" resultType="java.lang.Integer">
+        select count(*) as value
+        from tbl_huge_wins
+    </select>
+
+    <select id="selectHugeWinsTopByNum" parameterType="java.lang.Integer" resultType="java.util.Map">
+        select
+        *
+        from tbl_huge_wins
+        order by payout DESC
+        limit 0,#{num, jdbcType=INTEGER}
+    </select>
+
+    <select id="selectHugeWinMinBetInfo" resultType="java.util.Map">
+        select
+        *
+        from tbl_huge_wins
+        order by payout DESC
+        limit 0,1
+    </select>
+    <select id="deleteHugeWinMinBetInfoById" parameterType="java.lang.Integer">
+        delete from tbl_huge_wins
+        where
+        id = #{id, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertHugeWin" parameterType="com.github.ontio.model.BetInfo">
+    insert into tbl_huge_wins (bettor,rollUnder, bet, roll, payout)
+    values (#{bettor,jdbcType=VARCHAR}, #{rollUnder,jdbcType=INTEGER}, #{bet,jdbcType=DECIMAL}, #{roll,jdbcType=INTEGER},
+    #{payout,jdbcType=DECIMAL})
+    </insert>
+</mapper>

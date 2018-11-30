@@ -37,11 +37,21 @@ public class BetsHandleServiceImpl implements IBetsHandleService {
     }
 
     @Override
-    public Result getMyBets(String bettor) {
+    public Result getMyBetsByBettor(String bettor) {
         List<Map> betsBettor= betsInfoMapper.selectBetInfoByBettor(bettor);
         Map<String, Object> rs = new HashMap<>();
         rs.put("Result", betsBettor);
-        return Helper.result("getmybets", ErrorInfo.SUCCESS.code(),ErrorInfo.SUCCESS.desc(),
+        return Helper.result("getmybetsbybettor", ErrorInfo.SUCCESS.code(),ErrorInfo.SUCCESS.desc(),
+                VERSION,rs);
+    }
+
+    @Override
+    public Result getMyBetsByPage(String bettor, Integer pageSize, Integer pageNumber) {
+        int start = pageSize * (pageNumber - 1) < 0 ? 0 : pageSize * (pageNumber - 1);
+        List<Map> betsBettor= betsInfoMapper.selectMyBetInfoByPage(bettor, start, pageSize);
+        Map<String, Object> rs = new HashMap<>();
+        rs.put("Result", betsBettor);
+        return Helper.result("getmybetsbypage", ErrorInfo.SUCCESS.code(),ErrorInfo.SUCCESS.desc(),
                 VERSION,rs);
     }
 

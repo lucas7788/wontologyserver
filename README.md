@@ -3,6 +3,12 @@
 ## Introduction
 
 
+## 更新说明
+
+增加接口 `getmybetsbypage`
+
+接口 `getmybets` 变更成 `getmybetsbybettor`
+
 ## Api list
 
 1.  api/v1/bets/gethugewinstopbynum/{num}  Get
@@ -97,7 +103,7 @@ http://127.0.0.1:8585/api/v1/bets/getbetsbypage/5/1
 ```
 
 
-3. api/v1/bets/getmybets/{bettor}     Get
+3. api/v1/bets/getmybetsbybettor/{bettor}     Get
 
 根据bettor查询bet信息
 
@@ -111,7 +117,7 @@ http://127.0.0.1:8585/api/v1/bets/getmybets/ssss
 
 ```json
 {
-	"Action": "getmybets",
+	"Action": "getmybetsbybettor",
 	"Error": 0,
 	"Desc": "SUCCESS",
 	"Version": "1.0",
@@ -145,7 +151,48 @@ http://127.0.0.1:8585/api/v1/bets/getmybets/ssss
 }
 ```
 
-4. api/v1/bets/savebetinfo   Post
+4. api/v1/bets/getmybetsbypage/{bettor}/{pageSize}/{pageNumber}      Get
+
+根据页的大小以及页数查询我的bet信息
+
+
+请求例子
+```url
+http://127.0.0.1:8585/api/v1/bets/getmybetsbypage/sss/3/1
+```
+
+响应例子
+```json
+{
+	"Action": "getmybetsbypage",
+	"Error": 0,
+	"Desc": "SUCCESS",
+	"Version": "1.0",
+	"Result": {
+		"Result": [{
+			"bet": 1.0020,
+			"bettor": "sss",
+			"rollunder": 20,
+			"roll": 60,
+			"payout": 1.8800
+		}, {
+			"bet": 1.0020,
+			"bettor": "sss",
+			"rollunder": 20,
+			"roll": 60,
+			"payout": 1000.8800
+		}, {
+			"bet": 1.0020,
+			"bettor": "sss",
+			"rollunder": 20,
+			"roll": 60,
+			"payout": 29.8800
+		}]
+	}
+}
+```
+
+5. api/v1/bets/savebetinfo   Post
 
 保存bet信息
 
@@ -176,7 +223,7 @@ http://127.0.0.1:8585/api/v1/bets/getmybets/ssss
 ```
 
 
-5. api/v1/bets/savehugewin   Post
+6. api/v1/bets/savehugewin   Post
 
 保存bet信息
 

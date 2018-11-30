@@ -47,13 +47,29 @@ public class BetsController {
      *
      * @return
      */
-    @RequestMapping(value = "/getmybets/{bettor}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getmybetsbybettor/{bettor}", method = RequestMethod.GET)
     @ResponseBody
     public Result getMyBets(@PathVariable("bettor") String bettor) {
 
         logger.info("########{}.{} begin...", CLASS_NAME, Helper.currentMethod());
 
-        Result rs = betsHandleService.getMyBets(bettor);
+        Result rs = betsHandleService.getMyBetsByBettor(bettor);
+        return rs;
+    }
+
+    /**
+     * query the last few blocks
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getmybetsbypage/{bettor}/{pageSize}/{pageNumber}", method = RequestMethod.GET)
+    @ResponseBody
+    public Result getMyBetsByPage(@PathVariable("bettor") String bettor, @PathVariable("pageSize") int pageSize,
+                                  @PathVariable("pageNumber") int pageNumber) {
+
+        logger.info("########{}.{} begin...", CLASS_NAME, Helper.currentMethod());
+
+        Result rs = betsHandleService.getMyBetsByPage(bettor, pageSize,pageNumber);
         return rs;
     }
 

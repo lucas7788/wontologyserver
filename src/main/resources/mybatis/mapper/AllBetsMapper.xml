@@ -27,6 +27,15 @@
         where bettor = #{bettor,jdbcType=VARCHAR}
     </select>
 
+    <select id="selectMyBetInfoByPage"  resultType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_all_bets
+        where bettor = #{param1,jdbcType=VARCHAR}
+        order by id DESC
+        limit #{param2}, #{param3}
+    </select>
+
     <insert id="insertBetInfo" parameterType="com.github.ontio.model.BetInfo">
     insert into tbl_all_bets (bettor,rollUnder, bet, roll, payout)
     values (#{bettor,jdbcType=VARCHAR}, #{rollUnder,jdbcType=INTEGER}, #{bet,jdbcType=DECIMAL}, #{roll,jdbcType=INTEGER},

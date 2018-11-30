@@ -5,9 +5,11 @@ import com.github.ontio.paramBean.Result;
 
 public interface IBetsHandleService {
     Result getBetsByPage(Integer pageSize, Integer pageNumber);
-    Result getMyBets(String bettor);
+    Result getMyBetsByBettor(String bettor);
+    Result getMyBetsByPage(String bettor, Integer pageSize, Integer pageNumber);
     Result insertBetInfo(BetInfo betInfo);
 
     Result getHugeWinsTopByNum(Integer num);
     Result insertHugeWin(BetInfo betInfo);
+
 }

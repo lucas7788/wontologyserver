@@ -32,5 +32,6 @@ import java.math.BigDecimal;
 public class ConstantParam {
 
     public static int PAGE_SIZE;
+    public static int HUGE_WIN_SIZE;
 
 }

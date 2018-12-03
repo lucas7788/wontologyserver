@@ -2,6 +2,7 @@ package com.github.ontio.dao;
 
 
 import com.github.ontio.model.BetInfo;
+import com.github.ontio.model.BetInfoWithId;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -20,5 +21,5 @@ public interface BetsInfoMapper {
     List<Map> selectHugeWinsTopByNum(Integer num);
     int selectHugeWinTotalNum();
     Map selectHugeWinMinBetInfo();
-    int deleteHugeWinMinBetInfoById(Integer id);
+    int updateHugeWinMinBetInfoById(BetInfoWithId betInfoWithId);
 }

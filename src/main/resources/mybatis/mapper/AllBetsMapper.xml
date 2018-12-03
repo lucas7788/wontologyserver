@@ -66,14 +66,15 @@
         select
         *
         from tbl_huge_wins
-        order by payout DESC
+        order by payout
         limit 0,1
     </select>
-    <select id="deleteHugeWinMinBetInfoById" parameterType="java.lang.Integer">
-        delete from tbl_huge_wins
+    <update id="updateHugeWinMinBetInfoById" parameterType="com.github.ontio.model.BetInfoWithId">
+        update tbl_huge_wins
+        set bettor=#{bettor, jdbcType=VARCHAR},rollunder=#{rollUnder, jdbcType=INTEGER},bet=#{bet, jdbcType=DECIMAL},roll=#{roll, jdbcType=INTEGER},payout=#{payout, jdbcType=DECIMAL}
         where
         id = #{id, jdbcType=INTEGER}
-    </select>
+    </update>
 
     <insert id="insertHugeWin" parameterType="com.github.ontio.model.BetInfo">
     insert into tbl_huge_wins (bettor,rollUnder, bet, roll, payout)

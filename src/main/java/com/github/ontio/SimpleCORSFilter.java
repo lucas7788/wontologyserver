@@ -38,6 +38,7 @@ public class SimpleCORSFilter implements Filter {
 
 	public void doFilter(ServletRequest req, ServletResponse res,
                          FilterChain chain) throws IOException, ServletException {
+		ConstantParam.HUGE_WIN_SIZE = configParam.hugeWinSize;
 		HttpServletResponse response = (HttpServletResponse) res;
 		HttpServletRequest request = (HttpServletRequest) req;
 		String origin = request.getHeader("Origin");

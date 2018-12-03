@@ -2,8 +2,10 @@ package com.github.ontio.service.impl;
 
 import com.github.ontio.dao.BetsInfoMapper;
 import com.github.ontio.model.BetInfo;
+import com.github.ontio.model.BetInfoWithId;
 import com.github.ontio.paramBean.Result;
 import com.github.ontio.service.IBetsHandleService;
+import com.github.ontio.utils.ConstantParam;
 import com.github.ontio.utils.ErrorInfo;
 import com.github.ontio.utils.Helper;
 import org.mybatis.spring.annotation.MapperScan;
@@ -77,15 +79,21 @@ public class BetsHandleServiceImpl implements IBetsHandleService {
     public Result insertHugeWin(BetInfo betInfo) {
         int total = betsInfoMapper.selectHugeWinTotalNum();
         int res;
-        if (total < 10){
+        if (total < ConstantParam.HUGE_WIN_SIZE){
             res = betsInfoMapper.insertHugeWin(betInfo);
         }else {
             Map betInfoMinMap = betsInfoMapper.selectHugeWinMinBetInfo();
             BigDecimal minPayout = (BigDecimal) betInfoMinMap.get("payout");
             if(betInfo.payout.compareTo(minPayout) > 0){
                 int id = (int)betInfoMinMap.get("id");
-                int deleteRes = betsInfoMapper.deleteHugeWinMinBetInfoById(id);
-                res = betsInfoMapper.insertHugeWin(betInfo);
+                BetInfoWithId betInfoWithId = new BetInfoWithId();
+                betInfoWithId.id = id;
+                betInfoWithId.bettor = betInfo.bettor;
+                betInfoWithId.bet = betInfo.bet;
+                betInfoWithId.rollUnder = betInfo.rollUnder;
+                betInfoWithId.payout = betInfo.payout;
+                betInfoWithId.roll = betInfo.roll;
+                res = betsInfoMapper.updateHugeWinMinBetInfoById(betInfoWithId);
             }else {
                 res = 1;
             }

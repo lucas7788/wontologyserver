@@ -30,11 +30,10 @@ import org.springframework.stereotype.Service;
 
 @Service("ConfigParam")
 public class ConfigParam {
-
-
+    
     @Value("${pageSize}")
     public int pageSize;
 
-
-
+    @Value("${hugeWinSize}")
+    public int hugeWinSize;
 }

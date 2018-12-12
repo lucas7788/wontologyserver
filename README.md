@@ -5,9 +5,156 @@
 
 ## 更新说明
 
-增加接口 `getmybetsbypage`
+增加接口 
+`getbankerinvestbypage`
+`getbankerwithdrawbypage`
+`savebankerinvest`
+`savebankerwithdraw`
 
-接口 `getmybets` 变更成 `getmybetsbybettor`
+
+
+## 增加接口列表
+
+banker 庄家用户名
+pagesize 按页查询 每页大小
+pagenumber 按页查询 页数
+
+ 
+1. `getbankerinvestbypage`    GET
+
+`/getbankerinvestbypage/{banker}/{pagesize}/{pagenumber}`
+
+查询庄家投资信息
+
+
+请求例子
+
+```http
+http://52.77.179.132:443/api/v1/banker/getbankerinvestbypage/s99/3/1
+```
+
+响应结果
+```json
+{
+    "Action": "getbankerinvestbypage",
+    "Error": 0,
+    "Desc": "SUCCESS",
+    "Version": "1.0",
+    "Result": {
+        "Result": [
+            {
+                "time": "2018-12-12 09:33:53.0",
+                "banker": "s99",
+                "ongAmount": 100
+            },
+            {
+                "time": "2018-12-12 09:33:47.0",
+                "banker": "s99",
+                "ongAmount": 10
+            }
+        ]
+    }
+}
+```
+
+2. `getbankerwithdrawbypage`   GET
+
+`/getbankerwithdrawbypage/{banker}/{pagesize}/{pagenumber}`
+
+查询庄家提现记录
+
+请求例子
+
+```http request
+http://52.77.179.132:443/api/v1/banker/getbankerwithdrawbypage/s99/3/1
+```
+
+响应结果
+
+```json
+{
+    "Action": "getbankerwithdrawbypage",
+    "Error": 0,
+    "Desc": "SUCCESS",
+    "Version": "1.0",
+    "Result": {
+        "Result": [
+            {
+                "time": "2018-12-12 09:34:01.0",
+                "banker": "s99",
+                "ongAmount": 100
+            },
+            {
+                "time": "2018-12-12 09:29:55.0",
+                "banker": "s99",
+                "ongAmount": 10
+            }
+        ]
+    }
+}
+```
+
+3. `savebankerinvest`   POST
+
+``
+
+保存庄家投资记录
+
+请求例子
+```http request
+http://52.77.179.132:443/api/v1/banker/savebankerinvest
+```
+参数
+```json
+{
+  "banker": "s99",
+  "ongAmount": 100
+}
+```
+
+响应结果
+```json
+{
+    "Action": "savebankerinvest",
+    "Error": 0,
+    "Desc": "SUCCESS",
+    "Version": "1.0",
+    "Result": {
+        "Result": 1
+    }
+}
+```
+
+4. savebankerwithdraw    POST
+
+保存用户提现记录
+
+请求例子
+```http request
+http://52.77.179.132:443/api/v1/banker/savebankerwithdraw
+```
+
+参数
+```json
+{
+  "banker": "s99",
+  "ongAmount": 100
+}
+```
+
+响应结果
+```json
+{
+    "Action": "savebankerwithdraw",
+    "Error": 0,
+    "Desc": "SUCCESS",
+    "Version": "1.0",
+    "Result": {
+        "Result": 1
+    }
+}
+```
+
 
 ## Api list
 

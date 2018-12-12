@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.ontio.dao.BankerInfoMapper">
+    <resultMap id="BaseResultMap" type="com.github.ontio.model.BankerInfo">
+        <result column="time" jdbcType="TIMESTAMP" property="time" />
+        <result column="banker" jdbcType="VARCHAR" property="banker" />
+        <result column="ongAmount" jdbcType="DECIMAL" property="ongAmount" />
+    </resultMap>
+    <sql id="Base_Column_List">
+     time, banker, ongAmount
+    </sql>
+
+    <select id="selectBankerInvestByPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_banker_invest
+        where banker = #{param1,jdbcType=VARCHAR}
+        order by id DESC
+        limit #{param2}, #{param3}
+    </select>
+
+    <select id="selectBankerWithdrawByPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_banker_withdraw
+        where banker = #{param1,jdbcType=VARCHAR}
+        order by id DESC
+        limit #{param2}, #{param3}
+    </select>
+
+    <insert id="insertBankerInvest" parameterType="com.github.ontio.model.BankerInfo">
+    insert into tbl_banker_invest (banker,ongAmount)
+    values (#{banker,jdbcType=VARCHAR}, #{ongAmount,jdbcType=DECIMAL})
+    </insert>
+
+    <insert id="insertBankerWithdraw" parameterType="com.github.ontio.model.BankerInfo">
+    insert into tbl_banker_withdraw (banker,ongAmount)
+    values (#{banker,jdbcType=VARCHAR}, #{ongAmount,jdbcType=DECIMAL})
+    </insert>
+</mapper>

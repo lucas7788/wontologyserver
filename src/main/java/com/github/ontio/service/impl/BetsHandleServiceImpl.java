@@ -31,7 +31,7 @@ public class BetsHandleServiceImpl implements IBetsHandleService {
     @Override
     public Result getBetsByPage(Integer pageSize, Integer pageNumber) {
         int start = pageSize * (pageNumber - 1) < 0 ? 0 : pageSize * (pageNumber - 1);
-        List<Map> allBets = betsInfoMapper.selectBetInfoByPage(start, pageSize);
+        List<BetInfo> allBets = betsInfoMapper.selectBetInfoByPage(start, pageSize);
         Map<String, Object> rs = new HashMap<>();
         rs.put("Result", allBets);
         return Helper.result("getbetsbypage", ErrorInfo.SUCCESS.code(),ErrorInfo.SUCCESS.desc(),
@@ -40,7 +40,7 @@ public class BetsHandleServiceImpl implements IBetsHandleService {
 
     @Override
     public Result getMyBetsByBettor(String bettor) {
-        List<Map> betsBettor= betsInfoMapper.selectBetInfoByBettor(bettor);
+        List<BetInfo> betsBettor= betsInfoMapper.selectBetInfoByBettor(bettor);
         Map<String, Object> rs = new HashMap<>();
         rs.put("Result", betsBettor);
         return Helper.result("getmybetsbybettor", ErrorInfo.SUCCESS.code(),ErrorInfo.SUCCESS.desc(),
@@ -50,7 +50,7 @@ public class BetsHandleServiceImpl implements IBetsHandleService {
     @Override
     public Result getMyBetsByPage(String bettor, Integer pageSize, Integer pageNumber) {
         int start = pageSize * (pageNumber - 1) < 0 ? 0 : pageSize * (pageNumber - 1);
-        List<Map> betsBettor= betsInfoMapper.selectMyBetInfoByPage(bettor, start, pageSize);
+        List<BetInfo> betsBettor= betsInfoMapper.selectMyBetInfoByPage(bettor, start, pageSize);
         Map<String, Object> rs = new HashMap<>();
         rs.put("Result", betsBettor);
         return Helper.result("getmybetsbypage", ErrorInfo.SUCCESS.code(),ErrorInfo.SUCCESS.desc(),

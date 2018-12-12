@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.ontio</groupId>
-	<artifactId>sidechainserver</artifactId>
+	<artifactId>wontologyserver</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>sidechainserver</name>
-	<description>sidechainserver project for Ontology</description>
+	<name>wontologyserver</name>
+	<description>wontologyserver project for Ontology</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -84,13 +84,6 @@
 			<version>[1.2.31,)</version>
 		</dependency>
 
-		<!--ontology-javasdk -->
-		<dependency>
-			<groupId>com.github.ontio</groupId>
-			<artifactId>ontology-sdk-java</artifactId>
-			<version>1.0.5</version>
-		</dependency>
-
 
 <!--		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
@@ -107,6 +100,15 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

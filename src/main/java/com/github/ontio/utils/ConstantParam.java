@@ -19,11 +19,6 @@
 
 package com.github.ontio.utils;
 
-import com.github.ontio.OntSdk;
-import com.github.ontio.account.Account;
-
-import java.math.BigDecimal;
-
 /**
  * @author zhouq
  * @version 1.0

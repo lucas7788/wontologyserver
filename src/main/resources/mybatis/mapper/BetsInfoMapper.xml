@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.ontio.dao.BetsInfoMapper">
     <resultMap id="BaseResultMap" type="com.github.ontio.model.BetInfo">
+        <result column="time" jdbcType="TIMESTAMP" property="time" />
         <result column="bettor" jdbcType="VARCHAR" property="bettor" />
         <result column="rollunder" jdbcType="INTEGER" property="rollUnder" />
         <result column="bet" jdbcType="DECIMAL" property="bet" />
@@ -9,10 +10,10 @@
         <result column="payout" jdbcType="DECIMAL" property="payout" />
     </resultMap>
     <sql id="Base_Column_List">
-    bettor, rollunder,bet,roll,payout
+     time, bettor, rollunder,bet,roll,payout
     </sql>
 
-    <select id="selectBetInfoByPage" resultType="java.util.Map">
+    <select id="selectBetInfoByPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tbl_all_bets
@@ -20,14 +21,14 @@
         limit #{param1}, #{param2}
     </select>
 
-    <select id="selectBetInfoByBettor" parameterType="java.lang.String" resultType="java.util.Map">
+    <select id="selectBetInfoByBettor" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tbl_all_bets
         where bettor = #{bettor,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectMyBetInfoByPage"  resultType="java.util.Map">
+    <select id="selectMyBetInfoByPage"  resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tbl_all_bets
@@ -42,7 +43,7 @@
     #{payout,jdbcType=DECIMAL})
     </insert>
 
-    <select id="selectHugeWinnsByPage" resultType="java.util.Map">
+    <select id="selectHugeWinnsByPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tbl_huge_wins
@@ -69,6 +70,7 @@
         order by payout
         limit 0,1
     </select>
+
     <update id="updateHugeWinMinBetInfoById" parameterType="com.github.ontio.model.BetInfoWithId">
         update tbl_huge_wins
         set bettor=#{bettor, jdbcType=VARCHAR},rollunder=#{rollUnder, jdbcType=INTEGER},bet=#{bet, jdbcType=DECIMAL},roll=#{roll, jdbcType=INTEGER},payout=#{payout, jdbcType=DECIMAL}
@@ -81,4 +83,5 @@
     values (#{bettor,jdbcType=VARCHAR}, #{rollUnder,jdbcType=INTEGER}, #{bet,jdbcType=DECIMAL}, #{roll,jdbcType=INTEGER},
     #{payout,jdbcType=DECIMAL})
     </insert>
+
 </mapper>

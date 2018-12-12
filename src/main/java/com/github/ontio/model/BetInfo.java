@@ -3,11 +3,20 @@ package com.github.ontio.model;
 import java.math.BigDecimal;
 
 public class BetInfo {
+    public String time;
     public String bettor;
     public Integer rollUnder;
     public BigDecimal bet;
     public Integer roll;
     public BigDecimal payout;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getBettor() {
         return bettor;

@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS `tbl_all_bets`;
 CREATE TABLE `tbl_all_bets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `bettor` varchar(128) NOT NULL,
   `rollunder` int(11) NOT NULL DEFAULT 0,
   `bet` decimal(40,4) NOT NULL DEFAULT '0.000000000',

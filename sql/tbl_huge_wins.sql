@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS `tbl_huge_wins`;
 CREATE TABLE `tbl_huge_wins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `bettor` varchar(128) NOT NULL,
   `rollunder` int(11) NOT NULL DEFAULT 0,
   `bet` decimal(40,4) NOT NULL DEFAULT '0.000000000',

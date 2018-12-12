@@ -98,7 +98,6 @@ http://52.77.179.132:443/api/v1/banker/getbankerwithdrawbypage/s99/3/1
 
 3. `savebankerinvest`   POST
 
-``
 
 保存庄家投资记录
 
@@ -132,6 +131,7 @@ http://52.77.179.132:443/api/v1/banker/savebankerinvest
 保存用户提现记录
 
 请求例子
+
 ```http request
 http://52.77.179.132:443/api/v1/banker/savebankerwithdraw
 ```

@@ -15,9 +15,11 @@
 
 ## 增加接口列表
 
-banker 庄家用户名
-pagesize 按页查询 每页大小
-pagenumber 按页查询 页数
+`banker` 庄家用户名
+
+`pagesize` 按页查询 每页大小
+
+`pagenumber` 按页查询 页数
 
  
 1. `getbankerinvestbypage`    GET

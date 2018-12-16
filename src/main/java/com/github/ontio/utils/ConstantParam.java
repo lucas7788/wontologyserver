@@ -19,6 +19,11 @@
 
 package com.github.ontio.utils;
 
+import com.github.ontio.OntSdk;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author zhouq
  * @version 1.0
@@ -28,5 +33,11 @@ public class ConstantParam {
 
     public static int PAGE_SIZE;
     public static int HUGE_WIN_SIZE;
+
+    public static String MAINCHAIN_RPCURL = "";
+    public static List<String> MAINCHAIN_RPCLIST = new ArrayList<>();
+    public static OntSdk ONT_SDKSERVICE;
+
+    public static int MAINNODE_INDEX = 0;
 
 }

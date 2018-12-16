@@ -19,6 +19,8 @@
 
 package com.github.ontio;
 
+import com.github.ontio.asyncService.BlkSyncService;
+import com.github.ontio.thread.BlockSyncThread;
 import com.github.ontio.utils.ConfigParam;
 import com.github.ontio.utils.ConstantParam;
 import org.springframework.beans.factory.annotation.Autowired;

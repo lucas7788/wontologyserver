@@ -30,10 +30,38 @@ import org.springframework.stereotype.Service;
 
 @Service("ConfigParam")
 public class ConfigParam {
+
+    @Value("${node.interruptTime.max}")
+    public int NODE_INTERRUPTTIME_MAX;
+
+    @Value("${node.waitForBlockTime.max}")
+    public int NODE_WAITFORBLOCKTIME_MAX;
+
+    @Value("${block.interval}")
+    public int BLOCK_INTERVAL;
     
     @Value("${pageSize}")
     public int pageSize;
 
     @Value("${hugeWinSize}")
     public int hugeWinSize;
+
+    @Value("${mainchain.rpc.url}")
+    public String MAINCHAIN_RPC_URL;
+
+    @Value("${node.amount}")
+    public int NODE_AMOUNT;
+
+    @Value("${threadPoolSize.max}")
+    public int THREADPOOLSIZE_MAX;
+
+    @Value("${threadPoolSize.core}")
+    public int THREADPOOLSIZE_CORE;
+
+    @Value("${threadPoolSize.queue}")
+    public int THREADPOOLSIZE_QUEUE;
+
+    @Value("${threadPoolSize.keepalive.second}")
+    public int THREADPOOLSIZE_KEEPALIVE_SECOND;
+
 }
